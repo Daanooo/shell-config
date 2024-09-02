@@ -17,7 +17,7 @@ hotkeys:
   select-all:
     - Ctrl-Shift-A
   clear:
-    - Ctrl-U
+    - Ctrl-Shift-U
   zoom-in:
     - Ctrl-=
     - Ctrl-Shift-=
@@ -37,7 +37,7 @@ hotkeys:
   delete-previous-word:
     - Ctrl-Backspace
   delete-line:
-    - Ctrl-Shift-Backspace
+    - Ctrl-U
   delete-next-word:
     - Ctrl-Delete
   search:
