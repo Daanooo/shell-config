@@ -1,6 +1,79 @@
 version: 7
-profiles: []
-groups: []
+profiles:
+  - icon: fas fa-bug
+    options:
+      host: stg-app01a.solvari.sys.rootnet.io
+      algorithms:
+        hmac:
+          - hmac-sha1
+          - hmac-sha1-etm@openssh.com
+          - hmac-sha2-256
+          - hmac-sha2-256-etm@openssh.com
+          - hmac-sha2-512
+          - hmac-sha2-512-etm@openssh.com
+        kex:
+          - curve25519-sha256
+          - curve25519-sha256@libssh.org
+          - diffie-hellman-group-exchange-sha256
+          - diffie-hellman-group14-sha256
+          - diffie-hellman-group15-sha512
+          - diffie-hellman-group16-sha512
+          - diffie-hellman-group17-sha512
+          - diffie-hellman-group18-sha512
+          - ecdh-sha2-nistp256
+          - ecdh-sha2-nistp384
+          - ecdh-sha2-nistp521
+        cipher:
+          - aes128-ctr
+          - aes128-gcm
+          - aes128-gcm@openssh.com
+          - aes192-ctr
+          - aes256-ctr
+          - aes256-gcm
+          - aes256-gcm@openssh.com
+        serverHostKey:
+          - ecdsa-sha2-nistp256
+          - ecdsa-sha2-nistp384
+          - ecdsa-sha2-nistp521
+          - rsa-sha2-256
+          - rsa-sha2-512
+          - ssh-ed25519
+          - ssh-rsa
+      input: {}
+      privateKeys: []
+      user: solvariac_fa
+      forwardedPorts: []
+      scripts: []
+    weight: -1
+    name: Accept
+    group: 854f414d-04e0-4087-afb7-01d568afb828
+    id: ssh:custom:Accept:f85e81a1-04b0-4524-ada5-1e121bad9fd3
+    type: ssh
+  - icon: fas fa-bugs
+    options:
+      host: stg-app01a.solvari.sys.rootnet.io
+      algorithms: {}
+      input: {}
+      privateKeys: []
+      user: solvarist_fe
+    weight: -1
+    name: Dev
+    group: 854f414d-04e0-4087-afb7-01d568afb828
+    id: ssh:custom:Dev:c9909b5e-5c97-44d5-a4af-f8f24910cf04
+    type: ssh
+groups:
+  - id: 854f414d-04e0-4087-afb7-01d568afb828
+    name: Solvari
+    defaults:
+      ssh:
+        type: ssh
+        options:
+          algorithms: {}
+          input: {}
+          privateKeys:
+            - file:///home/daanooo/.ssh/id_ed25519
+          auth: publicKey
+          user: ''
 configSync:
   parts: {}
 hotkeys:
@@ -167,12 +240,35 @@ hotkeys:
   switch-profile:
     - Ctrl-Alt-T
   profile-selector:
-    - Ctrl-Shift-E
+    - Ctrl-P
   command-selector:
     - Ctrl-Shift-P
 terminal:
   searchOptions: {}
   customColorSchemes:
+    - name: Catppuccin Mocha
+      foreground: '#cdd6f4'
+      background: '#1e1e2e'
+      selection: null
+      cursor: '#f5e0dc'
+      cursorAccent: null
+      colors:
+        - '#45475a'
+        - '#f38ba8'
+        - '#a6e3a1'
+        - '#f9e2af'
+        - '#89b4fa'
+        - '#f5c2e7'
+        - '#94e2d5'
+        - '#bac2de'
+        - '#585b70'
+        - '#f38ba8'
+        - '#a6e3a1'
+        - '#f9e2af'
+        - '#89b4fa'
+        - '#f5c2e7'
+        - '#94e2d5'
+        - '#a6adc8'
     - name: Catppuccin Macchiato
       foreground: '#cdd6f4'
       background: '#24273a'
@@ -267,10 +363,16 @@ terminal:
       - '#ea76cb'
       - '#179299'
       - '#bcc0cc'
-  font: FiraCode Nerd Font Mono
+  font: Fira Code
   showTabProfileIcon: true
-  profile: local:wsl-Debian
-ssh: {}
+  profile: local:usrbinzsh
+  fontSize: 13
+ssh:
+  knownHosts:
+    - host: stg-app01a.solvari.sys.rootnet.io
+      port: 22
+      type: ecdsa-sha2-nistp256
+      digest: 2IHekCxSw0/T5R2I/hsfYzNg3mfBY6yVdmbPjCVjeb4=
 clickableLinks: {}
 accessibility: {}
 appearance:
@@ -285,3 +387,4 @@ profileDefaults:
   ssh:
     disableDynamicTitle: true
 profileBlacklist: []
+docker: {}
